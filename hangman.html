@@ -1,7 +1,5 @@
 <head>
-    <style>/* Variabes */  
-        /* Variabes */
-/* Mixin's */
+    <style>
  body {
 	 background: #4caf50;
 	 font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -182,15 +180,13 @@ var lives ;             // Lives
 var counter ;           // Count correct geusses
 var space;              // Number of spaces in word '-'
 
-// Get elements
+
 var showLives = document.getElementById("mylives");
 var showCatagory = document.getElementById("scatagory");
 var getHint = document.getElementById("hint");
 var showClue = document.getElementById("clue");
 
 
-
-// create alphabet ul
 var buttons = function () {
   myButtons = document.getElementById('buttons');
   letters = document.createElement('ul');
@@ -207,7 +203,7 @@ var buttons = function () {
 }
   
 
-// Select Catagory
+// Selecting Catagory
 var selectCat = function () {
   if (chosenCategory === categories[0]) {
     catagoryName.innerHTML = "The Chosen Category Is Premier League Football Teams";
@@ -218,7 +214,7 @@ var selectCat = function () {
   }
 }
 
-// Create geusses ul
+
  result = function () {
   wordHolder = document.getElementById('hold');
   correct = document.createElement('ul');
@@ -240,7 +236,7 @@ var selectCat = function () {
   }
 }
 
-// Show lives
+// Showing lives
  comments = function () {
   showLives.innerHTML = "You have " + lives + " lives";
   if (lives < 1) {
@@ -260,7 +256,7 @@ var animate = function () {
 }
 
 
- // Hangman
+ 
 canvas =  function(){
 
   myStickman = document.getElementById("stickman");
@@ -324,7 +320,6 @@ draw = function($pathFromx, $pathFromy, $pathTox, $pathToy) {
 drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
 
 
-// OnClick Function
  check = function () {
   list.onclick = function () {
     var geuss = (this.innerHTML);
@@ -347,8 +342,7 @@ drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3
   }
 }
 
-  
-// Play
+
 play = function () {
   categories = [
       ["everton", "liverpool", "swansea", "chelsea", "hull", "manchester-city", "newcastle-united"],
@@ -389,7 +383,7 @@ play();
   showClue.innerHTML = "Clue: - " +  hints [catagoryIndex][hintIndex];
 };
 
- // Reset
+ // Reseting code
 
 document.getElementById('reset').onclick = function() {
   correct.parentNode.removeChild(correct);

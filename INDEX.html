@@ -76,10 +76,10 @@
             background-color: #45a049;
         }
         .game-buttons a {
-            color: white; /* Change link color to white */
-            text-decoration: none; /* Remove underline */
+            color: white; 
+            text-decoration: none; 
         }
-        /* Tic Tac Toe styles */
+      
         .tic-tac-toe-container {
             display: none; /* Initially hidden */
             text-align: center;
@@ -100,12 +100,12 @@
             border: 2px solid #333;
             cursor: pointer;
         }
-        /* Rock-Paper-Scissors styles */
+       
         .rps-container {
             display: none; /* Initially hidden */
             text-align: center;
         }
-        /* Memory Card Match styles */
+        
         .memory-container {
             display: none; /* Initially hidden */
             text-align: center;
@@ -128,7 +128,7 @@
             font-size: 2rem;
             cursor: pointer;
         }
-        /* Guess the Number styles */
+        
         .guess-container {
             display: none; /* Initially hidden */
             text-align: center;
@@ -138,13 +138,12 @@
 <body>
     <div class="header">
         <h1>Welcome to the Game Zone</h1>
-        <p id="playerNameDisplay">Player Name</p> <!-- Display player name here -->
+        <p id="playerNameDisplay">Player Name</p> 
         <p>Choose a game and start playing to earn rewards!</p>
     </div>
     <div class="container">
         <div class="sidebar">
             <div class="profile">
-                <!-- <img src="profile-pic.jpg" alt="Profile Picture"> -->
                 <h2 id="playerNameDisplay">Player Name</h2>
                 <p>Coins Earned: <span id="coinsEarned">0</span></p>
                 <p>Games Played: <span id="gamesPlayed">0</span></p>
@@ -201,19 +200,16 @@
         const coinsEarnedDisplay = document.getElementById('coinsEarned');
         const gamesPlayedDisplay = document.getElementById('gamesPlayed');
 
-        // Update the displayed values on page load
         coinsEarnedDisplay.textContent = coins;
         gamesPlayedDisplay.textContent = gamesPlayed;
 
         function updateCoins() {
-            coins += 10; // Earn coins
-            gamesPlayed += 1; // Increment games played
+            coins += 10; 
+            gamesPlayed += 1; 
 
-            // Update localStorage
             localStorage.setItem('coins', coins);
             localStorage.setItem('gamesPlayed', gamesPlayed);
 
-            // Update displayed values
             coinsEarnedDisplay.textContent = coins;
             gamesPlayedDisplay.textContent = gamesPlayed;
         }

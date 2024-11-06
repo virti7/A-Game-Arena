@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zone: Choose Your Game!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            width: 100px;
+            border-radius: 50%;
+        }
+        .profile h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .profile p {
+            color: #555;
+        }
+        .game-section {
+            width: 70%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .game-section h2 {
+            color: #333;
+        }
+        .game-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .game-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .game-buttons button:hover {
+            background-color: #45a049;
+        }
+        .game-buttons a {
+            color: white; /* Change link color to white */
+            text-decoration: none; /* Remove underline */
+        }
+        /* Tic Tac Toe styles */
+        .tic-tac-toe-container {
+            display: none; /* Initially hidden */
+            text-align: center;
+        }
+        .tic-tac-toe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin: 0 auto;
+        }
+        .tic-tac-toe-cell {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 2rem;
+            border: 2px solid #333;
+            cursor: pointer;
+        }
+        /* Rock-Paper-Scissors styles */
+        .rps-container {
+            display: none; /* Initially hidden */
+            text-align: center;
+        }
+        /* Memory Card Match styles */
+        .memory-container {
+            display: none; /* Initially hidden */
+            text-align: center;
+        }
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .memory-card {
+            width: 100px;
+            height: 100px;
+            background-color: #f9f9f9;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        /* Guess the Number styles */
+        .guess-container {
+            display: none; /* Initially hidden */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to the Game Zone</h1>
+        <p id="playerNameDisplay">Player Name</p> <!-- Display player name here -->
+        <p>Choose a game and start playing to earn rewards!</p>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile">
+                <!-- <img src="profile-pic.jpg" alt="Profile Picture"> -->
+                <h2 id="playerNameDisplay">Player Name</h2>
+                <p>Coins Earned: <span id="coinsEarned">0</span></p>
+                <p>Games Played: <span id="gamesPlayed">0</span></p>
+            </div>
+        </div>
+        <div class="game-section">
+            <h2>Choose Your Game:</h2>
+            <div class="game-buttons">
+                <button id="ticTacToeButton" onclick="updateCoins()"><a href="Tic.html">Play Tic Tac Toe</a></button>
+                <button id="rpsButton" onclick="updateCoins()"><a href="RPS.html">Play Rock-Paper-Scissors</a></button>
+                <button id="memoryButton" onclick="updateCoins()"><a href="Memory.html">Play Memory Match</a></button>
+                <button id="guessButton" onclick="updateCoins()"><a href="hangman.html">Play Hangman</a></button>
+            </div>
+            <!-- Tic Tac Toe Game -->
+            <div class="tic-tac-toe-container" id="ticTacToeContainer">
+                <h3>Tic Tac Toe</h3>
+                <div class="tic-tac-toe-grid" id="ticTacToeGrid">
+                    <!-- Tic Tac Toe cells will be generated dynamically -->
+                </div>
+                <p id="ticTacToeResult"></p>
+                <button id="resetTicTacToe">Reset</button>
+            </div>
+            <!-- Rock-Paper-Scissors Game -->
+            <div class="rps-container" id="rpsContainer">
+                <h3>Rock-Paper-Scissors</h3>
+                <button class="rps-choice" data-choice="rock">Rock</button>
+                <button class="rps-choice" data-choice="paper">Paper</button>
+                <button class="rps-choice" data-choice="scissors">Scissors</button>
+                <p id="rpsResult"></p>
+                <button id="resetRPS">Reset</button>
+            </div>
+            <!-- Memory Card Match Game -->
+            <div class="memory-container" id="memoryContainer">
+                <h3>Memory Card Match</h3>
+                <div class="memory-grid" id="memoryGrid"></div>
+                <p id="memoryResult"></p>
+                <button id="resetMemory">Reset</button>
+            </div>
+            <!-- Guess the Number Game -->
+            <div class="guess-container" id="guessContainer">
+                <h3>Guess the Number</h3>
+                <p>Guess a number between 1 and 100:</p>
+                <input type="number" id="guessInput" placeholder="Your guess" />
+                <button id="submitGuess">Submit</button>
+                <p id="guessResult"></p>
+                <button id="resetGuess">Reset</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let coins = localStorage.getItem('coins') ? parseInt(localStorage.getItem('coins')) : 0;
+        let gamesPlayed = localStorage.getItem('gamesPlayed') ? parseInt(localStorage.getItem('gamesPlayed')) : 0;
+
+        const coinsEarnedDisplay = document.getElementById('coinsEarned');
+        const gamesPlayedDisplay = document.getElementById('gamesPlayed');
+
+        // Update the displayed values on page load
+        coinsEarnedDisplay.textContent = coins;
+        gamesPlayedDisplay.textContent = gamesPlayed;
+
+        function updateCoins() {
+            coins += 10; // Earn coins
+            gamesPlayed += 1; // Increment games played
+
+            // Update localStorage
+            localStorage.setItem('coins', coins);
+            localStorage.setItem('gamesPlayed', gamesPlayed);
+
+            // Update displayed values
+            coinsEarnedDisplay.textContent = coins;
+            gamesPlayedDisplay.textContent = gamesPlayed;
+        }
+    </script>
+</body>
+</html>

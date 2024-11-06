@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin: 20px 0;
+            font-size: 1.5rem;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock, Paper, Scissors</h1>
+    <div>
+        <button class="button" data-choice="rock">Rock</button>
+        <button class="button" data-choice="paper">Paper</button>
+        <button class="button" data-choice="scissors">Scissors</button>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="score">
+        Your Score: <span id="playerScore">0</span> | Computer Score: <span id="computerScore">0</span><br>
+        <button id="Home"><a href="suduko.html">Home</a></button>
+    </div>
+    <script>
+        const buttons = document.querySelectorAll('.button');
+        const resultDisplay = document.getElementById('result');
+        const playerScoreDisplay = document.getElementById('playerScore');
+        const computerScoreDisplay = document.getElementById('computerScore');
+        let playerScore = 0;
+        let computerScore = 0;
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const playerChoice = button.dataset.choice;
+                const computerChoice = getComputerChoice();
+                const winner = determineWinner(playerChoice, computerChoice);
+                updateScores(winner);
+                displayResult(playerChoice, computerChoice, winner);
+            });
+        });
+
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+        }
+
+        function determineWinner(player, computer) {
+            if (player === computer) {
+                return 'draw';
+            } else if (
+                (player === 'rock' && computer === 'scissors') ||
+                (player === 'paper' && computer === 'rock') ||
+                (player === 'scissors' && computer === 'paper')
+            ) {
+                return 'player';
+            } else {
+                return 'computer';
+            }
+        }
+
+        function updateScores(winner) {
+            if (winner === 'player') {
+                playerScore++;
+                playerScoreDisplay.textContent = playerScore;
+            } else if (winner === 'computer') {
+                computerScore++;
+                computerScoreDisplay.textContent = computerScore;
+            }
+        }
+
+        function displayResult(playerChoice, computerChoice, winner) {
+            if (winner === 'draw') {
+                resultDisplay.textContent = `It's a draw! You both chose ${playerChoice}.`;
+            } else if (winner === 'player') {
+                resultDisplay.textContent = `You win! ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}.`;
+            } else {
+                resultDisplay.textContent = `You lose! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} beats ${playerChoice}.`;
+            }
+        }
+    </script>
+</body>
+</html>
